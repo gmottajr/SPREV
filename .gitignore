@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/SistemaCompra.API/Properties/launchSettings.json
+/SistemaCompra.API/appsettings.Development.json
+/SistemaCompra.API/appsettings.json
+/SistemaCompra.Infra.Data.EF/appsettings.json
