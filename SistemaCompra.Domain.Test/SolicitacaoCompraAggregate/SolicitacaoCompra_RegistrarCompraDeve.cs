@@ -35,7 +35,7 @@ namespace SistemaCompra.Domain.Test.SolicitacaoCompraAggregate
             var ex = Assert.Throws<BusinessRuleException>(() => solicitacao.RegistrarCompra(itens));
 
             //Então
-            Assert.Equal("A solicitação de compra deve possuir itens!", ex.Message);
+            Assert.Equal("A solicitação de compra ERROR - itens de compra requeridos!", ex.Message);
         }
     }
 }

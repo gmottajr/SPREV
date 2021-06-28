@@ -20,6 +20,16 @@ namespace SistemaCompra.Infra.Data.SolicitacaoCompra
                 nomeFornecedor.Property(p => p.Nome).HasColumnName("NomeFornecedor").HasMaxLength(300);
             });
 
+            builder.OwnsOne(p => p.TotalGeral, totalGeral =>
+            {
+                totalGeral.Property(p => p.Valor).HasColumnName("TotalGeral").HasColumnType("decimal(18,2)");
+            });
+
+            builder.OwnsOne(p => p.CondicaoPagamento, condicaoPagamento =>
+            {
+                condicaoPagamento.Property(p => p.Valor).HasColumnName("CondicaoPagamento");
+            });
+
             builder.OwnsOne(x => x.UsuarioSolicitante, solicitante =>
             {
                 solicitante.Property(m => m.Nome).HasColumnName("UsuarioSolicitante").HasMaxLength(200);

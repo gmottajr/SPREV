@@ -6,7 +6,7 @@ namespace SistemaCompra.Domain.Core.Model
 {
     public class Money : ValueObject<Money>
     {
-        public readonly decimal Value;
+        public decimal Valor { get; private set; }
 
         public Money()
                 : this(0m)
@@ -15,22 +15,22 @@ namespace SistemaCompra.Domain.Core.Model
 
         public Money(decimal value)
         {
-            Value = value;
+            Valor = value;
         }
 
         public Money Add(Money money)
         {
-            return new Money(Value + money.Value);
+            return new Money(Valor + money.Valor);
         }
 
         public Money Subtract(Money money)
         {
-            return new Money(Value - money.Value);
+            return new Money(Valor - money.Valor);
         }
 
         protected override IEnumerable<object> GetAttributesToIncludeInEqualityCheck()
         {
-            return new List<Object>() { Value };
+            return new List<Object>() { Valor };
         }
     }
 }

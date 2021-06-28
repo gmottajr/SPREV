@@ -29,17 +29,18 @@ namespace SistemaCompra.Application.SolicitacaoCompra.Command.RegistrarCompra
 
         public Task<bool> Handle(RegistrarCompraCommand request, CancellationToken cancellationToken)
         {
-            var solicitacao = new SolctCompAgg.SolicitacaoCompra(request.UsuarioSolicitante, request.NomeFornecedor);
+            var solicitCompra = new SolctCompAgg.SolicitacaoCompra(request.UsuarioSolicitante, request.NomeFornecedor);
             foreach (var item in request.Itens)
             {
                 var gotProduto = _ProdutoRepository.Obter(item.ProdutoId);
-                solicitacao.AdicionarItem(gotProduto, item.Qtde);
+                solicitCompra.AdicionarItem(gotProduto, item.Qtde);
             }
-            
-            _SolicitacaoCompraRepository.RegistrarCompra(solicitacao);
+
+            solicitCompra.RegistrarCompra(solicitCompra.Itens);
+            _SolicitacaoCompraRepository.RegistrarCompra(solicitCompra);
 
             Commit();
-            PublishEvents(solicitacao.Events);
+            PublishEvents(solicitCompra.Events);
 
             return Task.FromResult(true);
         }

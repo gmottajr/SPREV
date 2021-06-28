@@ -42,7 +42,7 @@ namespace SistemaCompra.Domain.ProdutoAggregate
 
             Preco = new Money(preco);
 
-            AddEvent(new PrecoAtualizadoEvent(Id, Preco.Value));
+            AddEvent(new PrecoAtualizadoEvent(Id, Preco.Valor));
         }
     }
 }

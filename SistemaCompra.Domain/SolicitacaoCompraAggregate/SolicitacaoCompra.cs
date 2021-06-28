@@ -10,13 +10,18 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 {
     public class SolicitacaoCompra : Entity
     {
+        private const string ERROR_TITLE = "A solicitação de compra ERROR - {0}";
+
+        private const string ITENS_REQUREIDO = "itens de compra requeridos!";
+        private const int VALOR_CONDICAO_TRINTA_DIAS = 50000;
+
         public UsuarioSolicitante UsuarioSolicitante { get; private set; }
         public NomeFornecedor NomeFornecedor { get; private set; }
         public IList<Item> Itens { get; private set; }
         public DateTime Data { get; private set; }
         public Money TotalGeral { get; private set; }
         public Situacao Situacao { get; private set; }
-
+        public CondicaoPagamento CondicaoPagamento { get; private set; }
         private SolicitacaoCompra() { }
 
         public SolicitacaoCompra(string usuarioSolicitante, string nomeFornecedor)
@@ -26,6 +31,8 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
             NomeFornecedor = new NomeFornecedor(nomeFornecedor);
             Data = DateTime.Now;
             Situacao = Situacao.Solicitado;
+            CondicaoPagamento = new CondicaoPagamento(0);
+            Itens = new List<Item>();
         }
 
         public void AdicionarItem(Produto produto, int qtde)
@@ -35,7 +42,16 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
         public void RegistrarCompra(IEnumerable<Item> itens)
         {
-           
+            if (itens.Count() == 0)
+                throw new BusinessRuleException(string.Format(ERROR_TITLE, ITENS_REQUREIDO));
+
+            TotalGeral = new Money(itens.ToList().Sum(x => x.Subtotal.Valor));
+
+            if (TotalGeral.Valor > VALOR_CONDICAO_TRINTA_DIAS)
+                CondicaoPagamento = new CondicaoPagamento(30);
+
+            AddEvent(new CompraRegistradaEvent(Id, itens, TotalGeral.Valor));
         }
+
     }
 }

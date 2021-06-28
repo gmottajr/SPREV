@@ -8,8 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SistemaCompra.Application.Produto;
+using SistemaCompra.Application.SolicitacaoCompra.Command.RegistrarCompra;
 using SistemaCompra.Domain.ProdutoAggregate;
 using SistemaCompra.Domain.SolicitacaoCompraAggregate;
+using SistemaCompra.Domain.SolicitacaoCompraAggregate.Events;
 using SistemaCompra.Infra.Data;
 using SistemaCompra.Infra.Data.Produto;
 using SistemaCompra.Infra.Data.SolicitacaoCompra;
@@ -38,7 +40,9 @@ namespace SistemaCompra.API
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<ISolicitacaoCompraRepository, SolicitacaoCompraRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            // Eventos de domínio
+            services.AddScoped<INotificationHandler<CompraRegistradaEvent>, CompraRegistradaEventHandler>();
+            
             services.AddDbContext<SistemaCompraContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"), 
