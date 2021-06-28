@@ -40,8 +40,6 @@ namespace SistemaCompra.API
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<ISolicitacaoCompraRepository, SolicitacaoCompraRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            // Eventos de domínio
-            services.AddScoped<INotificationHandler<CompraRegistradaEvent>, CompraRegistradaEventHandler>();
             
             services.AddDbContext<SistemaCompraContext>(options =>
                 options.UseSqlServer(
