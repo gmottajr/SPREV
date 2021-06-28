@@ -11,7 +11,7 @@
 </p>
 
 <!-- Sobre o projeto -->
-## Sobre o projeto [Sobre o projeto](#about-the-project)
+## Sobre o projeto 
 
 Desafio para vaga de desenvolvedor senior.
 Uma Web API simples para um CRUD de Produtos e um registro de Compras :smile:
