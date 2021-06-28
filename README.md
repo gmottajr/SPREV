@@ -6,14 +6,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
- 
   <h3 align="center">Icatu Seguros Teste</h3> 
 </p>
 
 <!-- Sobre o projeto -->
 ## Sobre o projeto 
-
-Desafio para vaga de desenvolvedor senior.
 Uma Web API simples para um CRUD de Produtos e um registro de Compras :smile:
 
 Desenvolvimento: C# Rest Web Api com padrões de projeto
