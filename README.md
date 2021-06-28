@@ -39,11 +39,11 @@ Desenvolvimento: C# Rest Web Api com padrões de projeto
 
 Clone ou faça o download do repositório, abra o arquivo "SistemaCompras.sln" com o Visual Studio.
 
-### Prerequisites
+### Pré-requisitos
 Possuir instalado o Visual Studio com .Net Core.
 
 <!-- CONTACT -->
-## Contact
+## Contato
 
 Gerson Motta Jr. - mottajrgerson@gmail.com
 
