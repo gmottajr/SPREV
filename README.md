@@ -27,7 +27,7 @@ Desenvolvimento: C# Rest Web Api com padrões de projeto
 
 ### Construido com
 
-* [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet/3.1)
+* [.NET Core](https://dotnet.microsoft.com/download/dotnet/3.1)
 * [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-5.0)
 * [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
 * [Swagger](https://swagger.io/)
